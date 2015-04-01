@@ -3,7 +3,7 @@
  */
 wepredictApp.factory('dataFactory', ['$http', function($http) {
 
-    var urlBase = 'http://wepredict.robrotheram.com/v1/';
+    var urlBase = 'http://wepredict.robrotheram.com';
     var dataFactory = {};
 
     dataFactory.getAsthma = function () {
@@ -11,11 +11,11 @@ wepredictApp.factory('dataFactory', ['$http', function($http) {
     };
 
     dataFactory.getCCG = function () {
-        return $http.get(urlBase+'/getccg');
+        return $http.get(urlBase+'/ccg');
     };
 
     dataFactory.getPracticeList = function (practice) {
-        return $http.get(urlBase+'/getpractice?practice='+encodeURIComponent(practice));
+        return $http.get(urlBase+'/practice/'+encodeURIComponent(practice));
     };
 
     return dataFactory;

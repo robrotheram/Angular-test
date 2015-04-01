@@ -1,6 +1,6 @@
 wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
-    $scope.ccgid = obj.name;
+    $scope.ccgid = obj.dec;
     $scope.ccgname = obj.dec;
     $scope.message = obj.dec;
 

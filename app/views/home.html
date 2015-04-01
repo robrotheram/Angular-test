@@ -42,8 +42,8 @@
                         <div class="col-sm-3" style="padding-left:10px;">
                             <form novalidate class="form-group well">
                                 <div class="form-group">
-                                    <select class="form-control" ng-init="ccgSelected = ccgSelected || ccg[0].CCG" ng-model="ccgSelected"
-                                            ng-options="x as x.CCG for x in ccg">
+                                    <select class="form-control" ng-init="ccgSelected = ccgSelected || ccg[0].CCG_Name" ng-model="ccgSelected"
+                                            ng-options="x as x.CCG_Name for x in ccg">
                                     </select>
                                     <br>
                                     <button style="width: 100%" type="submit" ng-click="update()" class="btn btn-primary">Submit</button>

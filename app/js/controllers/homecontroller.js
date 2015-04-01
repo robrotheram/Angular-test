@@ -32,7 +32,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         $scope.update = function() {
 
             $timeout(function() {
-                var obj = {dec: $scope.ccgSelected.CCG};
+                var obj = {dec: $scope.ccgSelected.CCG_Name};
                 myService.set(obj);
                 $location.path('ccg');
                 $scope = $scope || angular.element(document).scope();
@@ -43,7 +43,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         dataFactory.getCCG()
             .success(function (data) {
                 $scope.ccg = data;
-                $scope.ccgSelected = $scope.ccg[0];
+                $scope.ccgSelected = $scope.ccg[1];
             })
             .error(function (error) {
                 $scope.message = 'Unable to load customer data: ' + error.message;

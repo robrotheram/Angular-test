@@ -26,8 +26,8 @@
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Select a practice</h4>
                 </div>
                 <div class="panel-body" style="width:100%;">
-                    <select class="form-control" ng-init="practiceSelected = practiceSelected || practice[0].Practice" ng-model="practiceSelected"
-                            ng-options="x as x.Practice for x in practice">
+                    <select class="form-control" ng-init="practiceSelected = practiceSelected || practice[0].Practice_Name" ng-model="practiceSelected"
+                            ng-options="x as x.Practice_Name for x in practice">
                     </select>
                     <br>
                     <button style="width: 100%" type="submit" ng-click="update()" class="btn btn-primary">Submit</button>

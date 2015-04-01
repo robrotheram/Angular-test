@@ -37,6 +37,9 @@ wepredictApp.directive( 'ccgPoly', ['$location',
                     var topo;
 
 
+                    console.log((scope.ccgid).toLowerCase());
+
+
 
                     topo = $.grep(countries, function(e){ return (e.properties.description).toLowerCase() == (scope.ccgid).toLowerCase(); });
 

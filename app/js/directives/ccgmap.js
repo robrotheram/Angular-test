@@ -22,8 +22,12 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 var height = (width )*1;
                 var topo,projection,path,svg,g;
                 var scaleValue = 4000;
-                if($(document).width()>1500){
+
+                if($(document).width()>1800){
                     var scaleValue = 5500;
+                }
+                if($(document).width()>1500){
+                    var scaleValue = 4000;
                 }
                 if($(document).width()<1500){
                     var scaleValue = 3000;
