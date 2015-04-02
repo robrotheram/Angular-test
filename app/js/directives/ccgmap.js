@@ -162,8 +162,6 @@ wepredictApp.directive( 'ccgMap', ['$location',
                     var s = d3.event.scale;
                     zscale = s;
                     var h = height/4;
-
-
                     zoom.translate(t);
 
 
