@@ -197,7 +197,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                             for(var i = lowest;i<highest;i++){
                                 if(q(i)!=tp){
                                     tp = q(i);
-                                    console.log(i,tp);
+                                    //console.log(i,tp);
                                     $('#keyTable').append('<tr><td>'+ i.toFixed(2)+'</td><td style="width:100%; background-color: '+tp.toString()+'"></td></tr>');
                                 }
                             }
@@ -224,9 +224,9 @@ wepredictApp.directive( 'ccgMap', ['$location',
                                         return parseInt(d);
                                     });
                                     var xxx = (d.properties.description).replace(" and", " And");
-                                    var yyy = xxx.replace("NHS Cambridgeshire And Peterborough CCG" ,"NHS Cambridgeshire and Peterborough CCG");
 
-                                    var dv  = $.grep(scope.heatmap, function(e){ return e.id == yyy; });
+
+                                    var dv  = $.grep(scope.heatmap, function(e){ return e.id == xxx; });
 
                                     $("#CCGData").show();
                                     $("#CCGData").html(d.properties.description +"<br> Value:"+(dv[0]["value"]).toFixed(2));
@@ -241,13 +241,11 @@ wepredictApp.directive( 'ccgMap', ['$location',
                                 })
                                 .style("fill", function (d) {
                                     var xxx = (d.properties.description).replace(" and", " And");
-                                    var yyy = xxx.replace("NHS Cambridgeshire And Peterborough CCG" ,"NHS Cambridgeshire and Peterborough CCG");
-
-                                    var dv  = $.grep(scope.heatmap, function(e){ return e.id == yyy; });
+                                    var dv  = $.grep(scope.heatmap, function(e){ return e.id == xxx; });
                                     if(dv[0]!=null){
                                         return(q(dv[0]["value"]));
                                     }else{
-                                        console.log(yyy);
+                                        console.log(xxx);
                                     }
 
 
