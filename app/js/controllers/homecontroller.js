@@ -7,6 +7,12 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
     function(myService,$scope,$route, $window, $location,dataFactory,$timeout) {
 
 
+        var flu =[];
+        var COPD =[];
+        var Asma =[];
+
+        $scope.ccgheatmapdata = [1];
+
         $scope.onClick = function (points, evt) {
             console.log(points, evt);
         };
@@ -22,6 +28,20 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
             });
         };
 
+
+        $scope.keyname = "Key"
+        $scope.COPDUpdate = function() {
+            $scope.ccgheatmapdata = COPD;
+            $scope.keyname = "COPD Key"
+        }
+        $scope.AsmaUpdate = function() {
+            $scope.ccgheatmapdata = Asma;
+            $scope.keyname = "Asthma Key"
+        }
+        $scope.fluUpdate = function() {
+            $scope.ccgheatmapdata = flu;
+            $scope.keyname = "Flu Key"
+        }
 
         $scope.ccgSelected = {};
         $scope.update = function() {
@@ -45,4 +65,19 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
             });
 
 
+        dataFactory.getHeatMap()
+            .success(function(data) {
+                for (var i=data.length-1; i>=0; i--) {
+                    flu[i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_FLU06"]}
+                    COPD[i] = {"id":data[i]["CCG_Name"],"value":data[i]["2012_COPD"]}
+                    Asma[i] = {"id":data[i]["CCG_Name"],"value":data[i]["2012_ASTHMA"]}
+                }
+                $scope.ccgheatmapdata = flu;
+                $scope.keyname = "Flu Key"
+
+
+            })
+            .error(function (error) {
+                $scope.message = 'Unable to load customer data: ' + error.message;
+            });
     }]);

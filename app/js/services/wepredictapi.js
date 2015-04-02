@@ -36,6 +36,9 @@ wepredictApp.factory('dataFactory', ['$http', function($http) {
         return $http.get(urlBase+'/ccg/copd/'+encodeURIComponent(practice));
     };
 
+    dataFactory.getHeatMap  = function(){
+        return $http.get(urlBase+'/ccg/heat_map');
+    }
 
 
     return dataFactory;
