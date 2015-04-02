@@ -1,4 +1,4 @@
-var wepredictApp = angular.module('scotchApp', ['ngRoute','angularChart','chart.js']);
+var wepredictApp = angular.module('scotchApp', ['ngRoute','chartjs']);
 
 wepredictApp.factory('myService', function() {
     var savedData = {}
@@ -42,8 +42,8 @@ wepredictApp.config(function($routeProvider,$locationProvider) {
         })
         // route for the contact page
         .when('/ccg', {
-            templateUrl : 'views/ccgName.html',
-            controller  : 'ccgController'
+            templateUrl : 'views/ccgName.html'
+            //controller  : 'ccgController'
         })
         .when('/practice', {
             templateUrl : 'views/practice.html',

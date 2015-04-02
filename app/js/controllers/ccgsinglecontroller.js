@@ -4,14 +4,11 @@ wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$l
     $scope.ccgname = obj.dec;
     $scope.message = obj.dec;
 
-    $scope.ccgdata = [
-        [11975,  5871, 8916, 2868],
-        [ 1951, 10048, 2060, 6171],
-        [ 8010, 16145, 8090, 8045],
-        [ 1013,   990,  940, 6907]
-    ];
-
     $scope.practiceSelected = {}
+
+
+
+
 
     dataFactory.getPracticeList(obj.dec)
         .success(function (data) {
@@ -23,7 +20,6 @@ wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$l
         });
 
 
-
     $scope.update = function() {
         $timeout(function() {
             var obj = {prac: $scope.practiceSelected.Practice, dec: $scope.ccgname};
@@ -32,9 +28,10 @@ wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$l
             $scope = $scope || angular.element(document).scope();
             $scope.$apply();
         });
-    };
-
-
+    }
 }]);
+
+
+
 
 

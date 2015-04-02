@@ -18,6 +18,26 @@ wepredictApp.factory('dataFactory', ['$http', function($http) {
         return $http.get(urlBase+'/practice/'+encodeURIComponent(practice));
     };
 
+    dataFactory.getCCGAsmatha = function (practice) {
+        return $http.get(urlBase+'/ccg/asmatha/'+encodeURIComponent(practice));
+    };
+
+
+    dataFactory.getCCGCHD = function (practice) {
+        return $http.get(urlBase+'/ccg/chd/'+encodeURIComponent(practice));
+    };
+
+
+    dataFactory.getCCGObesity = function (practice) {
+        return $http.get(urlBase+'/ccg/obesity/'+encodeURIComponent(practice));
+    };
+
+    dataFactory.getCCGCOPD = function (practice) {
+        return $http.get(urlBase+'/ccg/copd/'+encodeURIComponent(practice));
+    };
+
+
+
     return dataFactory;
 
 
