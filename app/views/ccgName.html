@@ -92,11 +92,10 @@
         <div class="col-lg-4">
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 1</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Flu</h4>
                 </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="line" class="chart chart-line" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgFluChartController">
+                    <cjs-bar dataset="activeData" responsive="true"></cjs-bar>
                 </div>
             </div>
 

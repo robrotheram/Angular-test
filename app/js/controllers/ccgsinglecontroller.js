@@ -22,7 +22,9 @@ wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$l
 
     $scope.update = function() {
         $timeout(function() {
-            var obj = {prac: $scope.practiceSelected.Practice, dec: $scope.ccgname};
+            //console.log("ythadbakjdnaslkdnasldnasdasdasdasd" + JSON.stringify($scope.practiceSelected));
+
+            var obj = {prac: $scope.practiceSelected.Practice_Name, dec: $scope.ccgname ,pracid: $scope.practiceSelected.Practice_Code};
             myService.set(obj);
             $location.path('practice');
             $scope = $scope || angular.element(document).scope();

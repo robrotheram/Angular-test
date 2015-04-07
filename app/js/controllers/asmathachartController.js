@@ -195,6 +195,53 @@ wepredictApp.controller('ccgObesityChartController', ['myService','dataFactory',
 }]);
 
 
+wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
+    var obj = myService.get();
+    dataFactory.getCCGFlu(obj.dec)
+        .success(function (data) {
+            $scope.asData  = [
+                (data[0]["2010_flu06"]).toFixed(2),
+                (data[0]["2010_flu65"]).toFixed(2),
+            ];
+
+            $scope.activeData = {
+                labels: [
+                    'Flu vaccine 6 month+',
+                    'Flu vaccine 65+'
+                ],
+                datasets: [
+                    {
+                        data: $scope.asData
+                    }
+                ]
+            };
+
+            console.log($scope.asData);
+        })
+        .error(function (error) {
+            $scope.message = 'Unable to load customer data: ' + error.message;
+            console.log($scope.message);
+        });
+
+
+    $scope.activeData = {
+        labels: [
+            'Jan',
+            'Feb',
+            'Mar'
+        ],
+        datasets: [
+            {
+                data: [0, 5, 10, 15, 20, 25]
+            }
+        ]
+    };
+}]);
+
+
+
+
+
 wepredictApp.controller('cordDiagramController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
     $scope.ccgdata = [

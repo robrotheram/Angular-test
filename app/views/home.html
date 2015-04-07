@@ -5,11 +5,12 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Description</h4>
                 </div>
                 <div class="panel-body" style="width:100%;">
-                    <canvas id="bar" class="chart chart-bar" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
+
+                    Some infomation about QOF Data relating to the heat map
+
                 </div>
             </div>
 
@@ -28,18 +29,15 @@
             <div class="panel panel-default " style="min-height:100%;height:100%">
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Main Map</h4>
-                    <div class="btn-group pull-right">
-                        <button type="button" data-value="1" ng-click="COPDUpdate()" class="btn btn-default">COPD</button>
-                        <button type="button" data-value="0" ng-click="AsmaUpdate()" class="btn btn-default">Asthma</button>
-                        <button type="button" data-value="0" ng-click="fluUpdate()" class="btn btn-default">Flu</button>
-                    </div>
+
                 </div>
                 <div class="panel-body" id="main">
                     <div class="row">
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <ccg-map id="ccgMap" style="width: 100%" class="img-rounded img-thumbnail" heatmap="ccgheatmapdata" callback-fn="alert(id,desc)"></ccg-map>
                         </div>
-                        <div class="col-sm-3" style="padding-left:10px;">
+                        <div class="col-sm-4" style="padding-left:10px;">
+
                             <form novalidate class="form-group well">
                                 <div class="form-group">
                                     <select class="form-control" ng-init="ccgSelected = ccgSelected || ccg[0].CCG_Name" ng-model="ccgSelected"
@@ -50,6 +48,35 @@
                                 </div>
                             </form>
 
+                            <div class="panel panel-default" style="background-color:#286090; color: #ffffff; text-align:center; padding:5px;">
+                                <h3 class="center-text"> Controls</h3>
+                                <table border="0" class="table borderless">
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" data-value="1" autofocus="true" ng-click="_2009Update()" class="btn btn-default active">2009</button>
+                                                <button type="button" data-value="0" ng-click="_2010Update()" class="btn btn-default">2010</button>
+                                                <button type="button" data-value="0" ng-click="_2011Update()" class="btn btn-default">2011</button>
+                                                <button type="button" data-value="0" ng-click="_2012Update()" class="btn btn-default">2012</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table border="0" class="table borderless">
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" data-value="0" ng-click="COPDUpdate()" class="btn btn-default active">COPD</button>
+                                                <button type="button" data-value="0" ng-click="AsmaUpdate()" class="btn btn-default">Asthma</button>
+                                                <button type="button" data-value="0" ng-click="CHDUpdate()" class="btn btn-default">CHD</button>
+                                                <button type="button" data-value="0" ng-click="ObesityUpdate()" class="btn btn-default">Obesity</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
                             <div class="img-rounded" style="background-color: #274a8e; color:#FFF;margin-bottom: 5px; padding: 10px;" id="CCGData">CCG Name</div>
 
                             <div class="panel panel-default" style="background-color:#286090; color: #ffffff; text-align:center; padding:5px;">
@@ -58,6 +85,8 @@
                                 <table id="keyTable" width="100%;" class="table">
                                 </table>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
