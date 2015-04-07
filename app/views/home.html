@@ -48,20 +48,11 @@
                                 </div>
                             </form>
 
+
+
                             <div class="panel panel-default" style="background-color:#286090; color: #ffffff; text-align:center; padding:5px;">
                                 <h3 class="center-text"> Controls</h3>
-                                <table border="0" class="table borderless">
-                                    <tr>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button type="button" data-value="1" autofocus="true" ng-click="_2009Update()" class="btn btn-default active">2009</button>
-                                                <button type="button" data-value="0" ng-click="_2010Update()" class="btn btn-default">2010</button>
-                                                <button type="button" data-value="0" ng-click="_2011Update()" class="btn btn-default">2011</button>
-                                                <button type="button" data-value="0" ng-click="_2012Update()" class="btn btn-default">2012</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+
                                 <table border="0" class="table borderless">
                                     <tr>
                                         <td>
@@ -71,6 +62,25 @@
                                                 <button type="button" data-value="0" ng-click="CHDUpdate()" class="btn btn-default">CHD</button>
                                                 <button type="button" data-value="0" ng-click="ObesityUpdate()" class="btn btn-default">Obesity</button>
                                             </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table border="0" class="table borderless">
+                                    <tr>
+                                        <td>
+                                            <h5>Year: {{model.first}}</h5>
+                                        </td>
+                                        <td>
+                                            <slider slider-id="testOptions.sliderId"
+                                                    ng-model="model.first"
+                                                    value="value.first"
+                                                    min="testOptions.min"
+                                                    max="testOptions.max"
+                                                    step="testOptions.step"
+                                                    range="testOptions.range"
+                                                    precision="testOptions.precision"
+                                                    ></slider>
                                         </td>
                                     </tr>
                                 </table>

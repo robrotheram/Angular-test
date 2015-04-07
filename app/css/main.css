@@ -1,5 +1,6 @@
 @import "../components/bootstrap/dist/css/bootstrap.css";
 @import "../components/angular/angular-csp.css";
+@import "../components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css";
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -37,7 +38,9 @@ body {
 }
 
 
-
+.tooltip{
+    display: none;
+}
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
     border: none;
 }

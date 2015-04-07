@@ -139,4 +139,47 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
             .error(function (error) {
                 $scope.message = 'Unable to load customer data: ' + error.message;
             });
+
+
+        $scope.testOptions = {
+            min: 2009,
+            max: 2012,
+            step: 1,
+            precision: 1,
+            orientation: 'horizontal',  // vertical
+            handle: 'round', //'square', 'triangle' or 'custom'
+            tooltip: 'show', //'hide','always'
+            tooltipseparator: ':',
+            tooltipsplit: false,
+            enabled: true,
+            naturalarrowkeys: false,
+            range: false,
+            ngDisabled: false,
+            reversed: false
+        };
+        $scope.model = {
+            first: 0
+        };
+
+
+        $scope.executeMe = function() {
+            switch($scope.model.first){
+                case 2009: $scope._2009Update();break;
+                case 2010:  $scope._2010Update();break;
+                case 2011:  $scope._2011Update();break;
+                case 2012:  $scope._2012Update();break;
+            }
+            console.log('done');
+        }
+
+
+        var timeout;
+        $scope.$watch('model.first', function() {
+            if (timeout) {
+                $timeout.cancel(timeout);
+            }
+            timeout = $timeout($scope.executeMe,200);
+        });
+
+
     }]);
