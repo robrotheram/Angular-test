@@ -1,42 +1,41 @@
 <!-- contact.html -->
 <div class="container ng-container">
     <div class="row">
-       <div class="col-lg-12 img-rounded" style="background-color: #286090">
-           <table class="table" style="text-align: center; vertical-align:middle;color: #ffffff " border="0">
-               <col width="90%"><col width="10%">
-               <tr>
-                   <td>
-                       <h1>{{practice}}</h1>
-                   </td>
-                   <td>
-                       <ccg-poly ccgid="ccgname"></ccg-poly>
-                   </td>
-               </tr>
-           </table>
-       </div>
+        <div class="col-lg-12 img-rounded" style="background-color: #286090" ng-controller="practiceController">
+            <table class="table" style="text-align: center; vertical-align:middle;color: #ffffff " border="0">
+                <col width="90%"><col width="10%">
+                <tr>
+                    <td>
+                        <h1>{{practiceName}}</h1>
+                    </td>
+                    <td>
+                        <ccg-poly ccgid="ccgname"></ccg-poly>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <br>
 
 
     <div class="row">
         <div class="col-lg-3">
+
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">COPD</h4>
                 </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="bar" class="chart chart-bar" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeCOPDChartController">
+                    <cjs-bar dataset="activeData" responsive="true"></cjs-bar>
                 </div>
             </div>
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Asmatha</h4>
                 </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="bar" class="chart chart-bar" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeAsmathaChartController">
+                    <cjs-line dataset="activeData" responsive="true"></cjs-line>
                 </div>
             </div>
 
@@ -46,7 +45,7 @@
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 1</h4>
                 </div>
-                <div class="panel-body" style="width:100%;">
+                <div class="panel-body" style="width:100%;" ng-controller="cordDiagramController">
                     <chordiagram style="width: 100%"  class="img-rounded img-thumbnail"  ccgid="ccgdata" callback-fn="alert(id,desc)" ></chordiagram>
                 </div>
             </div>
@@ -58,23 +57,10 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">CHD</h4>
                 </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="bar" class="chart chart-bar" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-4">
-            <div class="panel panel-default ">
-                <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 1</h4>
-                </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="line" class="chart chart-line" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeCHDChartController">
+                    <cjs-line dataset="activeData" responsive="true"></cjs-line>
                 </div>
             </div>
 
@@ -82,11 +68,21 @@
         <div class="col-lg-4">
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 1</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Obesity</h4>
                 </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="line" class="chart chart-line" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeObesityChartController">
+                    <cjs-line dataset="activeData" responsive="true"></cjs-line>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default ">
+                <div class="panel-heading clearfix"style="background-color: #286090">
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Flu</h4>
+                </div>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeFluChartController">
+                    <cjs-bar dataset="activeData" responsive="true"></cjs-bar>
                 </div>
             </div>
 

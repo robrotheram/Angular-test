@@ -6,12 +6,20 @@
 wepredictApp.controller('mainController',['myService','$scope','$route', '$window', '$location','dataFactory','$timeout',
     function(myService,$scope,$route, $window, $location,dataFactory,$timeout) {
 
-        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.series = ['Series A', 'Series B'];
-        $scope.data = [
-            [65, 59, 80, 81, 56, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90]
-        ];
+        $(".btn-group > .btn").click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+
+        var _2009 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
+        var _2010 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
+        var _2011 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
+        var _2012 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
+
+
+        var selectedYear;
+        var selectedData;
+        $scope.ccgheatmapdata = [1];
+
         $scope.onClick = function (points, evt) {
             console.log(points, evt);
         };
@@ -28,11 +36,54 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         };
 
 
+        $scope.keyname = "Key"
+
+
+        $scope._2009Update = function() {
+            selectedYear = _2009;
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+        };
+        $scope._2010Update = function() {
+            selectedYear = _2010;
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+        };
+        $scope._2011Update = function() {
+            selectedYear = _2011;
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+        };
+        $scope._2012Update = function() {
+            selectedYear = _2012;
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+        };
+
+        $scope.COPDUpdate = function() {
+            selectedData = "COPD";
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+            $scope.keyname = "COPD Key"
+        };
+        $scope.AsmaUpdate = function() {
+            selectedData = "Asma";
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+            $scope.keyname = "Asthma Key"
+        };
+        $scope.CHDUpdate = function() {
+            selectedData = "CHD";
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+            $scope.keyname = "CHD Key"
+        };
+        $scope.ObesityUpdate = function() {
+            selectedData = "Obesity";
+            $scope.ccgheatmapdata = selectedYear[selectedData];
+            $scope.keyname = "Obesity Key"
+        };
+
+
+
         $scope.ccgSelected = {};
         $scope.update = function() {
 
             $timeout(function() {
-                var obj = {dec: $scope.ccgSelected.CCG};
+                var obj = {dec: $scope.ccgSelected.CCG_Name};
                 myService.set(obj);
                 $location.path('ccg');
                 $scope = $scope || angular.element(document).scope();
@@ -43,11 +94,92 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         dataFactory.getCCG()
             .success(function (data) {
                 $scope.ccg = data;
-                $scope.ccgSelected = $scope.ccg[0];
+                $scope.ccgSelected = $scope.ccg[1];
             })
             .error(function (error) {
                 $scope.message = 'Unable to load customer data: ' + error.message;
             });
+
+
+
+        dataFactory.getHeatMap()
+            .success(function(data) {
+                for (var i=data.length-1; i>=0; i--) {
+                    _2009["CHD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2009_CHD_QOF"]}
+                    _2009["COPD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2009_COPD"]}
+                    _2009["Asma"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2009_ASTHMA"]}
+                    _2009["Obesity"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2009_Obesity_QOF"]}
+
+                    _2010["CHD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_CHD_QOF"]}
+                    _2010["COPD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_COPD"]}
+                    _2010["Asma"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_ASTHMA"]}
+                    _2010["Obesity"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_Obesity_QOF"]}
+
+
+                    _2011["CHD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_CHD_QOF"]}
+                    _2011["COPD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_COPD"]}
+                    _2011["Asma"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_ASTHMA"]}
+                    _2011["Obesity"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_Obesity_QOF"]}
+
+                    _2012["CHD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2012_CHD_QOF"]}
+                    _2012["COPD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2012_COPD"]}
+                    _2012["Asma"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2012_ASTHMA"]}
+                    _2012["Obesity"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2012_Obesity_QOF"]}
+
+
+
+                }
+                selectedYear = _2009;
+                selectedData = "COPD";
+                $scope.ccgheatmapdata = selectedYear[selectedData];
+                $scope.keyname = "COPD Key"
+
+
+            })
+            .error(function (error) {
+                $scope.message = 'Unable to load customer data: ' + error.message;
+            });
+
+
+        $scope.testOptions = {
+            min: 2009,
+            max: 2012,
+            step: 1,
+            precision: 1,
+            orientation: 'horizontal',  // vertical
+            handle: 'round', //'square', 'triangle' or 'custom'
+            tooltip: 'show', //'hide','always'
+            tooltipseparator: ':',
+            tooltipsplit: false,
+            enabled: true,
+            naturalarrowkeys: false,
+            range: false,
+            ngDisabled: false,
+            reversed: false
+        };
+        $scope.model = {
+            first: 0
+        };
+
+
+        $scope.executeMe = function() {
+            switch($scope.model.first){
+                case 2009: $scope._2009Update();break;
+                case 2010:  $scope._2010Update();break;
+                case 2011:  $scope._2011Update();break;
+                case 2012:  $scope._2012Update();break;
+            }
+            console.log('done');
+        }
+
+
+        var timeout;
+        $scope.$watch('model.first', function() {
+            if (timeout) {
+                $timeout.cancel(timeout);
+            }
+            timeout = $timeout($scope.executeMe,200);
+        });
 
 
     }]);
