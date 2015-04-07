@@ -67,20 +67,18 @@
                                 </table>
 
                                 <table border="0" class="table borderless">
+                                    <colgroup>
+                                        <col width="30%">
+                                        <col width="70%">
+
+                                    </colgroup>
                                     <tr>
                                         <td>
                                             <h5>Year: {{model.first}}</h5>
                                         </td>
                                         <td>
-                                            <slider slider-id="testOptions.sliderId"
-                                                    ng-model="model.first"
-                                                    value="value.first"
-                                                    min="testOptions.min"
-                                                    max="testOptions.max"
-                                                    step="testOptions.step"
-                                                    range="testOptions.range"
-                                                    precision="testOptions.precision"
-                                                    ></slider>
+                                            <div style="width: 100%;" slider ng-model="model.first" start=2009 end=2012></div>
+
                                         </td>
                                     </tr>
                                 </table>

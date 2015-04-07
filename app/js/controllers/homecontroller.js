@@ -158,7 +158,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
             reversed: false
         };
         $scope.model = {
-            first: 0
+            first: 2009
         };
 
 

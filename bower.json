@@ -31,6 +31,6 @@
     "d3": "~3.5.5",
     "topojson": "~1.6.18",
     "ng-chartjs": "~0.0.5",
-    "angular-bootstrap-slider": "~0.1.1"
+    "angular-nouislider": "~0.3.1"
   }
 }
