@@ -1,4 +1,4 @@
-var wepredictApp = angular.module('scotchApp', ['ngRoute','chartjs','nouislider','highcharts-ng']);
+var wepredictApp = angular.module('scotchApp', ['ngRoute','nouislider','highcharts-ng']);
 
 wepredictApp.factory('myService', function() {
     var savedData = {}
@@ -8,12 +8,10 @@ wepredictApp.factory('myService', function() {
     function get() {
         return savedData;
     }
-
     return {
         set: set,
         get: get
     }
-
 });
 
 
