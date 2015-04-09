@@ -1,4 +1,4 @@
-var wepredictApp = angular.module('scotchApp', ['ngRoute','chartjs','nouislider']);
+var wepredictApp = angular.module('scotchApp', ['ngRoute','chartjs','nouislider','highcharts-ng']);
 
 wepredictApp.factory('myService', function() {
     var savedData = {}

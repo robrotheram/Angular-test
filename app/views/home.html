@@ -16,7 +16,7 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 1</h4>
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Overview Graph 1</h4>
                 </div>
                 <div class="panel-body" style="width:100%;">
                     <canvas id="line" class="chart chart-line" data="data" labels="labels"
@@ -88,8 +88,17 @@
                             <div class="img-rounded" style="background-color: #274a8e; color:#FFF;margin-bottom: 5px; padding: 10px;" id="CCGData">CCG Name</div>
 
                             <div class="panel panel-default" style="background-color:#286090; color: #ffffff; text-align:center; padding:5px;">
-                                <h5>{{keyname}}</h5>
-                                </hr>
+
+                                <table width="100%;" class="table table-bordered">
+                                    <colgroup>
+                                        <col width="30%"/>
+                                        <col width="70%"/>
+                                    </colgroup>
+                                    <tr>
+                                        <td><h5>Indicator Value</h5></td>
+                                        <td><h5>{{keyname}}</h5></td>
+                                    </tr>
+                                </table>
                                 <table id="keyTable" width="100%;" class="table">
                                 </table>
                             </div>

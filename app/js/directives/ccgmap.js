@@ -34,7 +34,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                     var scaleValue = 5500;
                 }
                 if($(document).width()>1500){
-                    var scaleValue = 4000;
+                    var scaleValue = 3500;
                 }
                 if($(document).width()<1500){
                     var scaleValue = 3000;
@@ -194,6 +194,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
 
                             var tp = null;
                             $('#keyTable').empty();
+                            $('#keyTable').append('<colgroup><col width="30%"/><col width="70%"/></colgroup>');
                             for(var i = lowest;i<highest;i++){
                                 if(q(i)!=tp){
                                     tp = q(i);

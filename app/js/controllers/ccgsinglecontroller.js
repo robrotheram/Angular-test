@@ -1,4 +1,4 @@
-wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
+wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$location','$timeout','$route', function(myService,dataFactory,$scope,$location,$timeout,$route) {
     var obj = myService.get();
     $scope.ccgid = obj.dec;
     $scope.ccgname = obj.dec;
@@ -22,14 +22,18 @@ wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$l
 
     $scope.update = function() {
         $timeout(function() {
-            //console.log("ythadbakjdnaslkdnasldnasdasdasdasd" + JSON.stringify($scope.practiceSelected));
-
             var obj = {prac: $scope.practiceSelected.Practice_Name, dec: $scope.ccgname ,pracid: $scope.practiceSelected.Practice_Code};
             myService.set(obj);
             $location.path('practice');
             $scope = $scope || angular.element(document).scope();
             $scope.$apply();
         });
+    }
+
+    $scope.newPage = function() {
+        var obj = {prac: $scope.practiceSelected.Practice_Name, dec: $scope.ccgname ,pracid: $scope.practiceSelected.Practice_Code};
+        myService.set(obj);
+        $route.reload();
     }
 }]);
 
