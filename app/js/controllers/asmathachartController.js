@@ -251,12 +251,22 @@ wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$sc
 
     dataFactory.getCCGFlu(obj.dec)
         .success(function (data) {
-            var dataArr = [parseInt((data[0]["2010_flu06"]).toFixed(2)),parseInt((data[0]["2010_flu65"]).toFixed(2))];
 
-            $scope.chartConfig.series = [{
-                name:obj.dec,
-                data: dataArr
-            }];
+            //var json = [["001","Item1","2011-03-15","2011-06-15"],["001","Item2","2011-07-15","2011-11-15"]];
+
+            $scope.chartConfig.series = [];
+
+
+            $.each(data, function(key1, item) {
+                console.log(item);
+                var dataArr = [parseFloat(item['2010_flu06']),parseFloat(item['2010_flu06'])];
+                var obj = { name:item["Practice_Name"],  data: dataArr }
+                $scope.chartConfig.series.push(obj);
+
+            });
+            //var dataArr = [parseInt((data[0]["2010_flu06"]).toFixed(2)),parseInt((data[0]["2010_flu65"]).toFixed(2))];
+
+
             $scope.chartConfig.xAxis={
 
                 categories: ['Flu vaccine 6 month+', 'Flu vaccine 65+']
