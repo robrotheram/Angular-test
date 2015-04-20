@@ -1,31 +1,8 @@
 <div class="container ng-container">
     <div class="row" style="min-height:100%;height:100%">
 
-        <div class="col-lg-4">
 
-            <div class="panel panel-default ">
-                <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Description</h4>
-                </div>
-                <div class="panel-body" style="width:100%;">
-
-                    Some infomation about QOF Data relating to the heat map
-
-                </div>
-            </div>
-
-            <div class="panel panel-default ">
-                <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Overview Graph 1</h4>
-                </div>
-                <div class="panel-body" style="width:100%;">
-                    <canvas id="line" class="chart chart-line" data="data" labels="labels"
-                            legend="true" series="series" click="onClick"></canvas>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-8" style="min-height:100%;height:100%">
+        <div class="col-lg-12" style="min-height:100%;height:100%">
             <div class="panel panel-default " style="min-height:100%;height:100%">
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Main Map</h4>
@@ -34,7 +11,21 @@
                 <div class="panel-body" id="main">
                     <div class="row">
                         <div class="col-sm-8">
-                            <ccg-map id="ccgMap" style="width: 100%" class="img-rounded img-thumbnail" heatmap="ccgheatmapdata" callback-fn="alert(id,desc)"></ccg-map>
+                            <ccg-map id="ccgMap" style="width: 100%" class="img-rounded img-thumbnail" keyname="keyname" heatmap="ccgheatmapdata" callback-fn="alert(id,desc)"></ccg-map>
+
+                            <hr>
+
+                            <div class="panel panel-default ">
+                                <div class="panel-heading clearfix"style="background-color: #286090">
+                                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Description</h4>
+                                </div>
+                                <div class="panel-body" style="width:100%;">
+
+                                    <span id="CCGData">Some infomation about QOF Data relating to the heat map</span>
+
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-sm-4" style="padding-left:10px;">
 
@@ -49,60 +40,52 @@
                             </form>
 
 
+                            <div class="panel panel-default ">
+                                <div class="panel-heading clearfix"style="background-color: #286090">
+                                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Controls</h4>
+                                </div>
+                                <div class="panel-body" style="width:100%;">
+                                    <table border="0" class="table borderless">
+                                        <tr>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button type="button" data-value="0" ng-click="COPDUpdate()" class="btn btn-default active">COPD</button>
+                                                    <button type="button" data-value="0" ng-click="AsmaUpdate()" class="btn btn-default">Asthma</button>
+                                                    <button type="button" data-value="0" ng-click="CHDUpdate()" class="btn btn-default">CHD</button>
+                                                    <button type="button" data-value="0" ng-click="ObesityUpdate()" class="btn btn-default">Obesity</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
 
-                            <div class="panel panel-default" style="background-color:#286090; color: #ffffff; text-align:center; padding:5px;">
-                                <h3 class="center-text"> Controls</h3>
+                                    <table border="0" class="table borderless">
+                                        <colgroup>
+                                            <col width="30%">
+                                            <col width="70%">
 
-                                <table border="0" class="table borderless">
-                                    <tr>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button type="button" data-value="0" ng-click="COPDUpdate()" class="btn btn-default active">COPD</button>
-                                                <button type="button" data-value="0" ng-click="AsmaUpdate()" class="btn btn-default">Asthma</button>
-                                                <button type="button" data-value="0" ng-click="CHDUpdate()" class="btn btn-default">CHD</button>
-                                                <button type="button" data-value="0" ng-click="ObesityUpdate()" class="btn btn-default">Obesity</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                        </colgroup>
+                                        <tr>
+                                            <td>
+                                                <h5>Year: {{model.first}}</h5>
+                                            </td>
+                                            <td>
+                                                <div style="width: 100%;" slider ng-model="model.first" start=2009 end=2012></div>
 
-                                <table border="0" class="table borderless">
-                                    <colgroup>
-                                        <col width="30%">
-                                        <col width="70%">
-
-                                    </colgroup>
-                                    <tr>
-                                        <td>
-                                            <h5>Year: {{model.first}}</h5>
-                                        </td>
-                                        <td>
-                                            <div style="width: 100%;" slider ng-model="model.first" start=2009 end=2012></div>
-
-                                        </td>
-                                    </tr>
-                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
 
 
-                            <div class="img-rounded" style="background-color: #274a8e; color:#FFF;margin-bottom: 5px; padding: 10px;" id="CCGData">CCG Name</div>
-
-                            <div class="panel panel-default" style="background-color:#286090; color: #ffffff; text-align:center; padding:5px;">
-
-                                <table width="100%;" class="table table-bordered">
-                                    <colgroup>
-                                        <col width="30%"/>
-                                        <col width="70%"/>
-                                    </colgroup>
-                                    <tr>
-                                        <td><h5>Indicator Value</h5></td>
-                                        <td><h5>{{keyname}}</h5></td>
-                                    </tr>
-                                </table>
-                                <table id="keyTable" width="100%;" class="table">
-                                </table>
+                            <div class="panel panel-default ">
+                                <div class="panel-heading clearfix"style="background-color: #286090">
+                                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Heat Map Legend</h4>
+                                </div>
+                                <div class="panel-body" style="width:100%;">
+                                    <table id="keyTable" width="100%;" class="table"> </table>
+                                </div>
                             </div>
-
 
                         </div>
                     </div>

@@ -24,7 +24,7 @@ wepredictApp.directive( 'chordiagram', ['$location',
                     .matrix(scope.ccgid);
 
                 var width = element.parent()[0].offsetWidth; //<-- changed from fixed width.
-                    height = width * 0.52;  //<--changed from fixed width.
+                    height = 580;  //<--changed from fixed width.
                     innerRadius = Math.min(width, height) * .41,
                     outerRadius = innerRadius * 1.1;
 

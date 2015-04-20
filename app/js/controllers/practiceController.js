@@ -3,6 +3,24 @@ wepredictApp.controller('practiceController', ['myService','dataFactory','$scope
     $scope.practiceName = obj.prac;
     $scope.practiceCode = obj.pracid;
     $scope.ccgname = obj.dec;
+
+    $scope.chartTypes = [
+        {"id": "bar", "title": "Bar"},
+        {"id": "line", "title": "Line"},
+        {"id": "spline", "title": "Smooth line"},
+        {"id": "area", "title": "Area"},
+        {"id": "areaspline", "title": "Smooth area"},
+        {"id": "column", "title": "Column"},
+        {"id": "scatter", "title": "Scatter"}
+    ];
+
+    $scope.selectedTypes = "bar";
+
+    $scope.changeChart = function() {
+        myService.setChartType($scope.selectedTypes);
+    }
+
+
 }]);
 
 /**
@@ -10,6 +28,13 @@ wepredictApp.controller('practiceController', ['myService','dataFactory','$scope
  */
 wepredictApp.controller('PracticeAsmathaChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
+
+    $scope.$watch(function () { return myService.getChartType(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue)  $scope.chartConfig.options.chart.type = newValue;
+    });
+
+
+
     $scope.chartConfig = {
         options: {
             chart: {  type: 'areaspline' },
@@ -57,6 +82,12 @@ wepredictApp.controller('PracticeAsmathaChartController', ['myService','dataFact
 
 wepredictApp.controller('PracticeCOPDChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
+
+    $scope.$watch(function () { return myService.getChartType(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue)  $scope.chartConfig.options.chart.type = newValue;
+    });
+
+
     $scope.chartConfig = {
         options: {
             chart: {  type: 'column' },
@@ -105,6 +136,12 @@ wepredictApp.controller('PracticeCOPDChartController', ['myService','dataFactory
 
 wepredictApp.controller('PracticeCHDChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
+
+    $scope.$watch(function () { return myService.getChartType(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue)  $scope.chartConfig.options.chart.type = newValue;
+    });
+
+
     $scope.chartConfig = {
         options: {
             chart: {  type: 'areaspline' },
@@ -153,6 +190,12 @@ wepredictApp.controller('PracticeCHDChartController', ['myService','dataFactory'
 
 wepredictApp.controller('PracticeObesityChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
+
+    $scope.$watch(function () { return myService.getChartType(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue)  $scope.chartConfig.options.chart.type = newValue;
+    });
+
+
     $scope.chartConfig = {
         options: {
             chart: {  type: 'areaspline' },
@@ -202,6 +245,12 @@ wepredictApp.controller('PracticeObesityChartController', ['myService','dataFact
 
 wepredictApp.controller('PracticeFluChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
+
+    $scope.$watch(function () { return myService.getChartType(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue)  $scope.chartConfig.options.chart.type = newValue;
+    });
+
+
 
     $scope.chartConfig = {
         options: {

@@ -9,7 +9,8 @@ wepredictApp.directive( 'ccgMap', ['$location',
 
                 data: '=',
                 callbackFn:'&',
-                heatmap:'='
+                heatmap:'=',
+                keyname:'='
             },
             link: function (scope, element) {
 
@@ -195,6 +196,8 @@ wepredictApp.directive( 'ccgMap', ['$location',
                             var tp = null;
                             $('#keyTable').empty();
                             $('#keyTable').append('<colgroup><col width="30%"/><col width="70%"/></colgroup>');
+                            $('#keyTable').append('<tr><td>Indicator Value</td><td>'+scope.keyname+'</td></tr>');
+
                             for(var i = lowest;i<highest;i++){
                                 if(q(i)!=tp){
                                     tp = q(i);

@@ -38,60 +38,11 @@
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">COPD</h4>
                 </div>
-                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgCOPDChartController">
+                <div class="panel-body" style="width:95%; padding: 5px;" ng-controller="ccgCOPDChartController">
                     <!--<cjs-bar dataset="activeData" responsive="true"></cjs-bar>-->
                     <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
                 </div>
             </div>
-
-
-                <div class="panel panel-default ">
-                    <div class="panel-heading clearfix"style="background-color: #286090">
-                        <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Asthma</h4>
-                    </div>
-                    <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgAsmathaChartController">
-                        <!--<cjs-line dataset="activeData" responsive="true"></cjs-line>-->
-                        <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
-                    </div>
-                </div>
-
-
-                <div class="panel panel-default ">
-                    <div class="panel-heading clearfix"style="background-color: #286090">
-                        <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">CHD</h4>
-                    </div>
-                    <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgCHDChartController">
-                        <!--<cjs-line dataset="activeData" responsive="true"></cjs-line>-->
-                        <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
-                    </div>
-                </div>
-
-
-                <div class="panel panel-default ">
-                    <div class="panel-heading clearfix"style="background-color: #286090">
-                        <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Obesity</h4>
-                    </div>
-                    <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgObesityChartController">
-                        <!--<cjs-line dataset="activeData" responsive="true"></cjs-line>-->
-                        <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
-                    </div>
-                </div>
-
-
-                <div class="panel panel-default ">
-                    <div class="panel-heading clearfix"style="background-color: #286090">
-                        <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Flu</h4>
-                    </div>
-                    <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgFluChartController">
-                        <!--<cjs-bar dataset="activeData" options="someOptions" responsive="true"></cjs-bar>-->
-                        <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
-                    </div>
-                </div>
-
-
-
-
-
 
 
         </div>
@@ -105,6 +56,10 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-default"  ng-controller="customChartController">
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Some other chart Name here</h4>
@@ -113,19 +68,76 @@
                     <div class="row">
                         <highchart class="col-lg-12" config="chartConfig" style="height: 600px"></highchart>
                     </div>
-                    <div class="col-lg-3">
-                        <button ng-click="hideall()" class="btn btn-primary"> Stuff</button>
-                        <select ng-model="chartConfig.options.chart.type" ng-options="t.id as t.title for t in chartTypes"></select>
+                    <div class="row form-inline" style="padding-left: 10px; padding-right: 10px;">
+
+                            <div class="form-group well col-md-12">
+                                <div class="btn-group">
+                                    <button ng-click="hideall()" class=" btn btn-primary">Hide all Options</button>
+                                    <button ng-click="showall()" class=" btn btn-primary">Show all Options</button>
+                                </div>
+                                <label for="chartdata">Select Chat Data:</label>
+                                <select class="form-control" id="chartdata"   ng-model="selectedData" ng-options="item for item in dataobj"></select>
+                                <label for="charttype">Select Chat Type:</label>
+                                <select class="form-control" id="charttype"  ng-model="chartConfig.options.chart.type" ng-options="t.id as t.title for t in chartTypes"></select>
+
+
+
+                            </div>
                     </div>
 
-
-
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
 
+        <div class="col-lg-3">
+            <div class="panel panel-default ">
+                <div class="panel-heading clearfix"style="background-color: #286090">
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Asthma</h4>
+                </div>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgAsmathaChartController">
+                    <!--<cjs-line dataset="activeData" responsive="true"></cjs-line>-->
+                    <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+
+            <div class="panel panel-default ">
+                <div class="panel-heading clearfix"style="background-color: #286090">
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">CHD</h4>
+                </div>
+                <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgCHDChartController">
+                    <!--<cjs-line dataset="activeData" responsive="true"></cjs-line>-->
+                    <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
+                </div>
             </div>
 
-
-
         </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default ">
+            <div class="panel-heading clearfix"style="background-color: #286090">
+                <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Obesity</h4>
+            </div>
+            <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgObesityChartController">
+                <!--<cjs-line dataset="activeData" responsive="true"></cjs-line>-->
+                <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default ">
+            <div class="panel-heading clearfix"style="background-color: #286090">
+                <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Flu</h4>
+            </div>
+            <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="ccgFluChartController">
+                <!--<cjs-bar dataset="activeData" options="someOptions" responsive="true"></cjs-bar>-->
+                <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
+            </div>
+        </div>
+    </div>
+
+
     </div>
 </div>

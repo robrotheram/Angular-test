@@ -2,6 +2,11 @@ var wepredictApp = angular.module('scotchApp', ['ngRoute','nouislider','highchar
 
 wepredictApp.factory('myService', function() {
     var savedData = {}
+    var data = {
+        type:''
+    };
+
+
     function set(data) {
         savedData = data;
     }
@@ -10,7 +15,13 @@ wepredictApp.factory('myService', function() {
     }
     return {
         set: set,
-        get: get
+        get: get,
+        getChartType: function () {
+            return data.type;
+        },
+        setChartType: function (type) {
+            data.type = type;
+        }
     }
 });
 
