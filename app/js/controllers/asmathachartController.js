@@ -252,28 +252,20 @@ wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$sc
     dataFactory.getCCGFlu(obj.dec)
         .success(function (data) {
 
-            //var json = [["001","Item1","2011-03-15","2011-06-15"],["001","Item2","2011-07-15","2011-11-15"]];
-
             $scope.chartConfig.series = [];
+                $.each(data, function(key1, item) {
+                    console.log(item);
+                    var dataArr = [parseFloat(item['2010_flu06']),parseFloat(item['2010_flu06'])];
+                    var obj = { name:item["Practice_Name"],  data: dataArr }
+                    $scope.chartConfig.series.push(obj);
 
-
-            $.each(data, function(key1, item) {
-                console.log(item);
-                var dataArr = [parseFloat(item['2010_flu06']),parseFloat(item['2010_flu06'])];
-                var obj = { name:item["Practice_Name"],  data: dataArr }
-                $scope.chartConfig.series.push(obj);
-
-            });
-            //var dataArr = [parseInt((data[0]["2010_flu06"]).toFixed(2)),parseInt((data[0]["2010_flu65"]).toFixed(2))];
-
-
+                });
             $scope.chartConfig.xAxis={
 
                 categories: ['Flu vaccine 6 month+', 'Flu vaccine 65+']
             };
 
             $scope.chartConfig.loading= false;
-            console.log(dataArr);
         })
         .error(function (error) {
             $scope.message = 'Unable to load customer data: ' + error.message;
@@ -289,6 +281,122 @@ wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$sc
 
 
 
+
+
+wepredictApp.controller('customChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
+
+    var obj = myService.get();
+
+
+    $scope.chartConfig = {
+
+        options: {
+            chart: {
+                type: 'spline'
+            },
+            tooltip: {
+                style: {
+                    padding: 10,
+                    fontWeight: 'bold'
+                }
+            },
+            legend: {
+                align: 'right',
+                enabled: true,
+                verticalAlign: 'top',
+                layout: "vertical",
+                title: {
+                    text: 'Practice',
+                    style: {fontWeight: 'bold'}
+                },
+                borderWidth: 1
+
+            }
+        },
+        title: { text: 'Obesity QOF prevalence'},
+        loading: true,
+        useHighStocks: false
+    };
+
+
+
+    var masterData;
+
+    dataFactory.getCCGData(obj.dec)
+        .success(function (data) {
+            masterData = data;
+
+            $scope.chartConfig.series = [];
+
+            $.each(masterData, function(key1, item) {
+
+                var l_Dara = [
+                    parseFloat(item["2009_Obesity_QOF"]),
+                    parseFloat(item["2010_Obesity_QOF"]),
+                    parseFloat(item["2011_Obesity_QOF"]),
+                    parseFloat(item["2012_Obesity_QOF"]),
+                    parseFloat(item["2013_Obesity_QOF"])
+                ];
+                var obj = { name:item["Practice_Name"],  data: l_Dara };
+                $scope.chartConfig.series.push(obj);
+            });
+            $scope.chartConfig.xAxis={
+                title: {text: 'Year'},
+                categories: ["2009","2010","2011","2012","2013"]
+            };
+            $scope.chartConfig.yAxis= {
+                title: {text: 'Indicator Value'},
+                currentMin:0
+            };
+            $scope.chartConfig.loading= false;
+
+        })
+        .error(function (error) {
+            $scope.message = 'Unable to load customer data: ' + error.message;
+            console.log($scope.message);
+        });
+
+
+    $scope.hideall = function() {
+        $scope.chartConfig.serie
+        $($scope.chartConfig.series).each(function(){
+            console.log(this);
+            this.visible = false;
+        });
+        $scope.chartConfig.series[0].visible = true;
+    }
+
+
+    $scope.fludata = function() {
+        $scope.chartConfig.series = [];
+        $.each(masterData, function(key1, item) {
+
+            var dataArr = [parseFloat(item['2010_flu06']),parseFloat(item['2010_flu06'])];
+            var obj = { name:item["Practice_Name"],  data: dataArr }
+            $scope.chartConfig.series.push(obj);
+
+        });
+        $scope.chartConfig.xAxis={
+
+            categories: ['Flu vaccine 6 month+', 'Flu vaccine 65+']
+        };
+        $scope.chartConfig.options.chart.type = 'bar';
+
+    };
+
+    $scope.chartTypes = [
+        {"id": "line", "title": "Line"},
+        {"id": "spline", "title": "Smooth line"},
+        {"id": "area", "title": "Area"},
+        {"id": "areaspline", "title": "Smooth area"},
+        {"id": "column", "title": "Column"},
+        {"id": "bar", "title": "Bar"},
+        {"id": "pie", "title": "Pie"},
+        {"id": "scatter", "title": "Scatter"}
+    ];
+
+
+}]);
 
 
 wepredictApp.controller('cordDiagramController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
