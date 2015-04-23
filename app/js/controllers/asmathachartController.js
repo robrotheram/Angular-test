@@ -1,5 +1,6 @@
 /**
- * Created by robert on 02/04/15.
+ * @class WePredict.ccgAsmathaChartController
+ * @description Controller that controllers the Asmatha chart
  */
 wepredictApp.controller('ccgAsmathaChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
@@ -21,6 +22,7 @@ wepredictApp.controller('ccgAsmathaChartController', ['myService','dataFactory',
         loading: true,
         useHighStocks: false
     };
+
 
     dataFactory.getCCGAsmatha(obj.dec)
         .success(function (data) {
@@ -57,6 +59,11 @@ wepredictApp.controller('ccgAsmathaChartController', ['myService','dataFactory',
         });
 
 }]);
+
+/**
+ * @class WePredict.ccgCOPDChartController
+ * @description Controller that controllers the COPD chart
+ */
 
 wepredictApp.controller('ccgCOPDChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
@@ -117,6 +124,11 @@ wepredictApp.controller('ccgCOPDChartController', ['myService','dataFactory','$s
 
 }]);
 
+
+/**
+ * @class WePredict.ccgCHDChartController
+ * @description Controller that controllers the CHD chart
+ */
 wepredictApp.controller('ccgCHDChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
 
@@ -164,6 +176,13 @@ wepredictApp.controller('ccgCHDChartController', ['myService','dataFactory','$sc
         });
 
 }]);
+
+
+
+/**
+ * @class WePredict.ccgObesityChartController
+ * @description Controller that controllers the Obesity chart
+ */
 
 
 wepredictApp.controller('ccgObesityChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
@@ -226,6 +245,10 @@ wepredictApp.controller('ccgObesityChartController', ['myService','dataFactory',
 
 }]);
 
+/**
+ * @class WePredict.ccgFluChartController
+ * @description Controller that controllers the Flu chart
+ */
 
 wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
@@ -300,7 +323,10 @@ wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$sc
 
 
 
-
+/**
+ * @class WePredict.customChartController
+ * @description Controller that controllers the Custom chart
+ */
 
 wepredictApp.controller('customChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
 
@@ -341,9 +367,23 @@ wepredictApp.controller('customChartController', ['myService','dataFactory','$sc
 
     $scope.selectedData = "Flu";
 
+    /**
+     * @name $scope.$watchCollection
+     * @function $watchCollection
+     * @memberOf WePredict.customChartController
+     * @description Watch fuction used to check it the "selectedData" in the scope changes, if so fires changeData()
+     */
+
     $scope.$watchCollection('selectedData', function() {
         changeData();
     });
+
+    /**
+     * @name changeData
+     * @function changeData
+     * @memberOf WePredict.customChartController
+     * @description Depending on the data being selected e.g Flu, Obesity e.t.c it changes the axis labels and then gets the data from chatData
+     */
     function changeData(){
         var result =  $scope.chatData.filter(function( obj ) {
             return obj.name == $scope.selectedData;
@@ -404,6 +444,17 @@ wepredictApp.controller('customChartController', ['myService','dataFactory','$sc
         {name :"CHD", data:[]},
         {name :"asthma", data:[]}
     ];
+
+
+    /**
+     * @name checkNumber
+     * @function checkNumber
+     * @memberOf WePredict.customChartController
+     * @description  If number is empty or null converts it to 0 for the chart
+     * @param {*} obj Object item from ChartData
+     * @returns {*} obj Object from chartData or 0 if empty or null
+     *
+     */
 
     function checkNumber(obj){
         if((obj=="")||(obj==null)){
@@ -492,6 +543,13 @@ wepredictApp.controller('customChartController', ['myService','dataFactory','$sc
         });
 
 
+    /**
+     * @name $scope.hideall
+     * @function checkNumber
+     * @memberOf WePredict.customChartController
+     * @description  Hidees all data in the visible series and shows the first value.
+     *
+     */
     $scope.hideall = function() {
         changeData();
         $($scope.chartConfig.series).each(function(){
@@ -501,6 +559,14 @@ wepredictApp.controller('customChartController', ['myService','dataFactory','$sc
         $scope.chartConfig.series[0].visible = true;
     }
 
+
+    /**
+     * @name $scope.showall
+     * @function checkNumber
+     * @memberOf WePredict.customChartController
+     * @description  Shows all data in the visible series.
+     *
+     */
     $scope.showall = function() {
         $($scope.chartConfig.series).each(function(){
             console.log(this);
@@ -528,13 +594,34 @@ wepredictApp.controller('customChartController', ['myService','dataFactory','$sc
 }]);
 
 
+
+/**
+ * @class WePredict.cordDiagramController
+ * @description Controller that controllers the cord chart
+ */
 wepredictApp.controller('cordDiagramController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
     $scope.ccgdata = [
-        [11975,  5871, 8916, 2868],
-        [ 1951, 10048, 2060, 6171],
-        [ 8010, 16145, 8090, 8045],
-        [ 1013,   990,  940, 6907]
+        [2,0,0,1,0,0,1,0,1,1,0,1,0,1,1,1,0,1,0,0],
+        [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0],
+        [0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,1,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [1,0,0,1,0,0,4,0,0,1,0,1,0,1,1,1,0,1,0,0],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0],
+        [0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0],
+        [0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0],
+        [0,0,2,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0],
+        [1,0,0,1,0,0,1,0,1,1,0,9,0,0,1,1,0,1,1,0],
+        [1,0,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0,1,1,0],
+        [1,0,0,1,0,0,1,0,1,1,0,1,0,7,1,0,0,1,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+        [0,0,1,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0],
+        [0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0],
+        [0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0]
     ];
 }]);
 

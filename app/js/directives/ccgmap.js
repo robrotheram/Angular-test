@@ -1,5 +1,6 @@
 /**
- * Created by robert on 12/03/15.
+ * @class WePredict.ccgMap
+ * @description Directive that Controls the Heatmap Chart
  */
 wepredictApp.directive( 'ccgMap', ['$location',
     function ($location) {
@@ -12,14 +13,15 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 heatmap:'=',
                 keyname:'='
             },
+            /**
+             * @name link
+             * @function link
+             * @memberOf WePredict.ccgMap
+             * @description Function called when the view is shown on the page
+             * @param {scope} scope Object that contains objects listed in the Html element e.g <map data callback > ect
+             * @param {element} element The containing element of this map
+             */
             link: function (scope, element) {
-
-
-                console.log(scope.heatmap);
-
-
-
-
                 d3.select(window).on("resize", throttle);
                 var scaleValue = 0;
                 var zoom = d3.behavior.zoom()
@@ -46,7 +48,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 if($(document).width()<750){
                     var scaleValue = 1000;
                 }
-                // $("#CCGData").hide();
+
                 setup(width,height);
 
                 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
@@ -55,21 +57,10 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 var highest;
                 var q;
 
-
-                //              var offsetL = document.getElementById('container').offsetLeft+20;
-//                var offsetT = document.getElementById('container').offsetTop+10;
-
                 d3.json("js/ccg.json", function(error, world) {
-
                     var countries = topojson.feature(world, world.objects.CCG).features;
-
                     topo = countries;
                     draw(scope,topo,null);
-
-
-                    /* ******************* END *********************************** */
-
-
                 });
 
 
@@ -99,7 +90,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                         console.log(highest, lowest);
 
                         q = d3.scale.quantize().domain([lowest, highest]).range([d3.rgb(240,249,232), d3.rgb(204,235,197), d3.rgb(168,221,181), d3.rgb(123,204,196), d3.rgb(78,179,211), d3.rgb(43,140,190), d3.rgb(8,88,158)]);
-                        //console.log(data);
+
                     }
 
 

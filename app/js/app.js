@@ -1,11 +1,22 @@
+
+/**
+ * @class WePredict.app
+ * @memberOf WePredict
+ */
 var wepredictApp = angular.module('scotchApp', ['ngRoute','nouislider','highcharts-ng']);
+
+
+/**
+ * @function myService
+ * @memberOf WePredict.app
+ * @description This is an angularjs service.
+ */
 
 wepredictApp.factory('myService', function() {
     var savedData = {}
     var data = {
         type:''
     };
-
 
     function set(data) {
         savedData = data;
@@ -27,8 +38,11 @@ wepredictApp.factory('myService', function() {
 
 
 
-
-// configure our routes
+/**
+ * @function config
+ * @memberOf WePredict.app
+ * @description This is an config for angular. It describes the views being used and the controller for the view.
+ */
 wepredictApp.config(function($routeProvider,$locationProvider) {
 
     $routeProvider
@@ -52,7 +66,6 @@ wepredictApp.config(function($routeProvider,$locationProvider) {
         // route for the contact page
         .when('/ccg', {
             templateUrl : 'views/ccgName.html'
-            //controller  : 'ccgController'
         })
         .when('/practice', {
             templateUrl : 'views/practice.html',

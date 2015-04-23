@@ -1,14 +1,13 @@
 /**
- * Created by robert on 12/03/15.
+ * @class WePredict.mainController
+ * @description Controller that controllers the Home view.
  */
 
-// create the controller and inject Angular's $scope
 wepredictApp.controller('mainController',['myService','$scope','$route', '$window', '$location','dataFactory','$timeout',
     function(myService,$scope,$route, $window, $location,dataFactory,$timeout) {
 
-        $(".btn-group > .btn").click(function(){
-            $(this).addClass("active").siblings().removeClass("active");
-        });
+
+
 
         var _2009 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
         var _2010 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
@@ -18,12 +17,34 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
         var selectedYear;
         var selectedData;
+        var timeout;
+
         $scope.ccgheatmapdata = [1];
 
+        /**
+         * @name $scope.onClick
+         * @function onClick
+         * @memberOf WePredict.mainController
+         * @description  Log function to find out what the points are
+         */
         $scope.onClick = function (points, evt) {
             console.log(points, evt);
         };
+
+
         $scope.message = 'Everyone come and see how good I look!';
+
+
+
+        /**
+         * @name $scope.alert
+         * @function alert
+         * @memberOf WePredict.mainController
+         * @description  Puts Data into the serive of the CCG Name and ID and navigate to CCG
+
+         * @param {String} id ID of CCG
+         * @param {String} desc Name of the CCG
+         */
         $scope.alert = function(id,desc){
             $timeout(function() {
                 var obj = {name:id,dec:desc};
@@ -39,38 +60,113 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         $scope.keyname = "Key"
 
 
+
+        /**
+         * @name $scope._2009Update
+         * @function _2009Update
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use 2009 Data
+
+         */
         $scope._2009Update = function() {
             selectedYear = _2009;
             $scope.ccgheatmapdata = selectedYear[selectedData];
         };
+
+        /**
+         * @name $scope._2010Update
+         * @function _2010Update
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use 2010 Data
+
+         */
+
         $scope._2010Update = function() {
             selectedYear = _2010;
             $scope.ccgheatmapdata = selectedYear[selectedData];
         };
+
+        /**
+         * @name $scope._2011Update
+         * @function _2011Update
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use 2011 Data
+
+         */
+
+
         $scope._2011Update = function() {
             selectedYear = _2011;
             $scope.ccgheatmapdata = selectedYear[selectedData];
         };
+
+        /**
+         * @name $scope._2012Update
+         * @function _2012Update
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use 2012 Data
+
+         */
+
+
         $scope._2012Update = function() {
             selectedYear = _2012;
             $scope.ccgheatmapdata = selectedYear[selectedData];
         };
+
+        /**
+         * @name $scope._COPDUpdate
+         * @function _COPDUpdate
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use COPD Data
+
+         */
+
 
         $scope.COPDUpdate = function() {
             selectedData = "COPD";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "COPD Key"
         };
+
+        /**
+         * @name $scope.AsthmaUpdate
+         * @function AsthmaUpdate
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use Asthma Data
+
+         */
+
+
         $scope.AsmaUpdate = function() {
             selectedData = "Asma";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "Asthma Key"
         };
+
+        /**
+         * @name $scope.CHDUpdate
+         * @function CHDUpdate
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use CHD  Data
+
+         */
+
+
         $scope.CHDUpdate = function() {
             selectedData = "CHD";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "CHD Key"
         };
+        /**
+         * @name $scope.ObesityUpdate
+         * @function ObesityUpdate
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use Obesity Data
+
+         */
+
+
         $scope.ObesityUpdate = function() {
             selectedData = "Obesity";
             $scope.ccgheatmapdata = selectedYear[selectedData];
@@ -80,6 +176,16 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
         $scope.ccgSelected = {};
+
+        /**
+         * @name $scope._2009Update
+         * @function _2009Update
+         * @memberOf WePredict.mainController
+         * @description  Switch HeatMap to use 2009 Data
+
+         */
+
+
         $scope.update = function() {
 
             $timeout(function() {
@@ -90,6 +196,14 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
                 $scope.$apply();
             });
         };
+
+        /**
+         * @name dataFactory.getCCG.success
+         * @function getCCG
+         * @memberOf WePredict.mainController
+         * @description  Get list of CCG from API
+
+         */
 
         dataFactory.getCCG()
             .success(function (data) {
@@ -162,6 +276,13 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         };
 
 
+        /**
+         * @name $scope.executeMe
+         * @function executeMe
+         * @memberOf WePredict.mainController
+         * @description  Change data based on the slider value
+
+         */
         $scope.executeMe = function() {
             switch($scope.model.first){
                 case 2009: $scope._2009Update();break;
@@ -172,8 +293,13 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
             console.log('done');
         }
 
+        /**
+         * @name $scope.$watch
+         * @function $watch
+         * @memberOf WePredict.mainController
+         * @description  Watch Model if change cancel timeout
 
-        var timeout;
+         */
         $scope.$watch('model.first', function() {
             if (timeout) {
                 $timeout.cancel(timeout);
@@ -181,5 +307,9 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
             timeout = $timeout($scope.executeMe,200);
         });
 
+
+        $(".btn-group > .btn").click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        });
 
     }]);

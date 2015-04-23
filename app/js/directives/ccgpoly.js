@@ -1,7 +1,7 @@
 /**
- * Created by robert on 12/03/15.
+ * @class WePredict.ccgPoly
+ * @description Directive that Controls the map icon
  */
-
 wepredictApp.directive( 'ccgPoly', ['$location',
     function ($location) {
         return {
@@ -12,6 +12,14 @@ wepredictApp.directive( 'ccgPoly', ['$location',
                 callbackFn:'&',
                 ccgid:'='
             },
+            /**
+             * @name link
+             * @function link
+             * @description Function called when the view is shown on the page
+             * @memberOf WePredict.ccgPoly
+             * @param {scope} scope Object that contains objects listed in the Html element e.g <map data callback > ect
+             * @param {element} element The containing element of this map
+             */
             link: function (scope, element) {
                 d3.select(window).on("resize", throttle);
                 var scaleValue = 0;

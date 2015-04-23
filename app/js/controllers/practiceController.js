@@ -1,3 +1,8 @@
+/**
+ * @class WePredict.practiceController
+ * @description Controller that controllers the Practice view.
+ */
+
 wepredictApp.controller('practiceController', ['myService','dataFactory','$scope', function(myService,dataFactory,$scope) {
     var obj = myService.get();
     $scope.practiceName = obj.prac;
@@ -16,6 +21,12 @@ wepredictApp.controller('practiceController', ['myService','dataFactory','$scope
 
     $scope.selectedTypes = "bar";
 
+    /**
+     * @name $scope.changeChart
+     * @function changeChart
+     * @memberOf WePredict.practiceController
+     * @description  Sets the Chart type in the service to be used throughout the page to change the chart type
+     */
     $scope.changeChart = function() {
         myService.setChartType($scope.selectedTypes);
     }
@@ -24,8 +35,10 @@ wepredictApp.controller('practiceController', ['myService','dataFactory','$scope
 }]);
 
 /**
- * Created by robert on 02/04/15.
+ * @class WePredict.PracticeAsmathaChartController
+ * @description Controller that controllers the Asthma chart.
  */
+
 wepredictApp.controller('PracticeAsmathaChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
 
@@ -46,6 +59,12 @@ wepredictApp.controller('PracticeAsmathaChartController', ['myService','dataFact
         useHighStocks: false
     };
 
+    /**
+     * @name dataFactory.getPracticeAsmatha
+     * @function getPracticeAsmatha
+     * @memberOf WePredict.PracticeAsmathaChartController
+     * @description  Builds the chart from data gotten from the api Converts all numeric data to floats
+     */
     dataFactory.getPracticeAsmatha(obj.pracid)
         .success(function (data) {
             var l_Dara = [
@@ -79,6 +98,12 @@ wepredictApp.controller('PracticeAsmathaChartController', ['myService','dataFact
         });
 
 }]);
+
+/**
+ * @class WePredict.PracticeCOPDChartController
+ * @description Controller that controllers the COPD Chart.
+ */
+
 
 wepredictApp.controller('PracticeCOPDChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
@@ -134,6 +159,14 @@ wepredictApp.controller('PracticeCOPDChartController', ['myService','dataFactory
 
 }]);
 
+
+/**
+ * @class WePredict.PracticeCHDChartController
+ * @description Controller that controllers the CHD Chart.
+ */
+
+
+
 wepredictApp.controller('PracticeCHDChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
 
@@ -186,6 +219,14 @@ wepredictApp.controller('PracticeCHDChartController', ['myService','dataFactory'
         });
 
 }]);
+
+
+/**
+ * @class WePredict.PracticeObesityChartController
+ * @description Controller that controllers the Obesity Chart
+ */
+
+
 
 
 wepredictApp.controller('PracticeObesityChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
@@ -242,6 +283,11 @@ wepredictApp.controller('PracticeObesityChartController', ['myService','dataFact
 
 }]);
 
+/**
+ * @class WePredict.PracticeFluChartController
+ * @description Controller that controllers the Flu Chart
+ */
+
 
 wepredictApp.controller('PracticeFluChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
@@ -283,20 +329,6 @@ wepredictApp.controller('PracticeFluChartController', ['myService','dataFactory'
             $scope.message = 'Unable to load customer data: ' + error.message;
             console.log($scope.message);
         });
-}]);
-
-
-
-
-
-wepredictApp.controller('PracticeCordDiagramController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
-    var obj = myService.get();
-    $scope.ccgdata = [
-        [11975,  5871, 8916, 2868],
-        [ 1951, 10048, 2060, 6171],
-        [ 8010, 16145, 8090, 8045],
-        [ 1013,   990,  940, 6907]
-    ];
 }]);
 
 
