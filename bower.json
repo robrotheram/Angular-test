@@ -31,6 +31,7 @@
     "d3": "~3.5.5",
     "topojson": "~1.6.18",
     "angular-nouislider": "~0.3.1",
-    "highcharts-ng": "~0.0.8"
+    "highcharts-ng": "~0.0.8",
+    "jquery-resizable-columns": "~0.1.3"
   }
 }

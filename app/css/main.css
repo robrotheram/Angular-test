@@ -1,9 +1,10 @@
 @import "../components/bootstrap/dist/css/bootstrap.css";
 @import "../components/angular/angular-csp.css";
+@import "../components/jquery-resizable-columns/dist/jquery.resizableColumns.css";
+
 /* Sticky footer styles
 -------------------------------------------------- */
-/* Sticky footer styles
--------------------------------------------------- */
+
 html {
     position: relative;
     min-height: 100%;
@@ -17,6 +18,47 @@ body {
     fill: none;
     pointer-events: all;
 }
+.panel-title{
+    text-align: center;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    display: none;
+    shape-rendering: crispEdges;
+}
+
+.area {
+    fill: steelblue;
+}
+.x.axis path {
+    display: none;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+
+#main-content{
+    min-height: 100%;
+    height: auto;
+
+}
+#main-content > .row {
+    overflow-x:visible;
+    overflow-y:hidden;
+    white-space:nowrap;
+}
+#main-content > .row [class*="col-lg"], #main-content > .row [class*="col-md"], #main-content > .row [class*="col-sm"] {
+    float:none;
+    display:inline-block;
+}
+
+
 
 
 .footer {

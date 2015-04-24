@@ -126,7 +126,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         $scope.COPDUpdate = function() {
             selectedData = "COPD";
             $scope.ccgheatmapdata = selectedYear[selectedData];
-            $scope.keyname = "COPD Key"
+            $scope.keyname = "COPD"
         };
 
         /**
@@ -141,7 +141,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         $scope.AsmaUpdate = function() {
             selectedData = "Asma";
             $scope.ccgheatmapdata = selectedYear[selectedData];
-            $scope.keyname = "Asthma Key"
+            $scope.keyname = "Asthma"
         };
 
         /**
@@ -156,7 +156,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         $scope.CHDUpdate = function() {
             selectedData = "CHD";
             $scope.ccgheatmapdata = selectedYear[selectedData];
-            $scope.keyname = "CHD Key"
+            $scope.keyname = "CHD"
         };
         /**
          * @name $scope.ObesityUpdate
@@ -170,7 +170,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         $scope.ObesityUpdate = function() {
             selectedData = "Obesity";
             $scope.ccgheatmapdata = selectedYear[selectedData];
-            $scope.keyname = "Obesity Key"
+            $scope.keyname = "Obesity"
         };
 
 
@@ -246,7 +246,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
                 selectedYear = _2009;
                 selectedData = "COPD";
                 $scope.ccgheatmapdata = selectedYear[selectedData];
-                $scope.keyname = "COPD Key"
+                $scope.keyname = "COPD"
 
 
             })

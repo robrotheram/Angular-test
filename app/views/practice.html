@@ -23,7 +23,7 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Select a practice</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">Select a practice</h4>
                 </div>
                 <div class="panel-body" style="width:100%;"ng-controller="ccgController">
                     <select class="form-control" ng-init="practiceSelected = practiceSelected || practice[0].Practice_Name" ng-model="practiceSelected"
@@ -36,14 +36,10 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Change Chart Type</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">Change Chart Type</h4>
                 </div>
                 <div class="panel-body" style="width:100%;"ng-controller="practiceController">
-                    <select class="form-control" id="charttype"  ng-model="selectedTypes" ng-options="t.id as t.title for t in chartTypes"></select>
-
-
-                    <br>
-                    <button style="width: 100%" type="submit" ng-click="changeChart()" class="btn btn-primary">Submit</button>
+                    <select class="form-control" id="charttype"  ng-model="selectedTypes" ng-change="changeChart()" ng-options="t.id as t.title for t in chartTypes"></select>
                 </div>
             </div>
 
@@ -53,7 +49,7 @@
             <div class="col-lg-9">
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">COPD</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">COPD</h4>
                 </div>
                 <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeCOPDChartController">
                     <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
@@ -69,7 +65,7 @@
         <div class="col-lg-6">
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Asthma</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">Asthma</h4>
                 </div>
                 <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeAsmathaChartController">
                     <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
@@ -81,7 +77,7 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">CHD</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">CHD</h4>
                 </div>
                 <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeCHDChartController">
                     <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
@@ -94,7 +90,7 @@
         <div class="col-lg-6">
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Obesity</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">Obesity</h4>
                 </div>
                 <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeObesityChartController">
                     <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>
@@ -105,7 +101,7 @@
         <div class="col-lg-6">
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Flu</h4>
+                    <h4 class="panel-title " style="color: #ffffff; padding-top: 7.5px;">Flu</h4>
                 </div>
                 <div class="panel-body" style="width:95%; padding: 20px;" ng-controller="PracticeFluChartController">
                     <highchart id="chart1" config="chartConfig" style="width:100%;"></highchart>

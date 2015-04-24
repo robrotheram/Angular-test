@@ -33,20 +33,20 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 var topo,projection,path,svg,g;
                 var scaleValue = 4000;
 
-                if($(document).width()>1800){
-                    var scaleValue = 5500;
+                if($(document).width()>1700){
+                    var scaleValue = 8000;
                 }
                 if($(document).width()>1500){
-                    var scaleValue = 3500;
+                    var scaleValue = 5000;
                 }
                 if($(document).width()<1500){
-                    var scaleValue = 3000;
+                    var scaleValue = 4000;
                 }
                 if($(document).width()<1200){
-                    var scaleValue = 1900;
+                    var scaleValue = 2500;
                 }
                 if($(document).width()<750){
-                    var scaleValue = 1000;
+                    var scaleValue = 1500;
                 }
 
                 setup(width,height);
@@ -187,7 +187,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                             var tp = null;
                             $('#keyTable').empty();
                             $('#keyTable').append('<colgroup><col width="30%"/><col width="70%"/></colgroup>');
-                            $('#keyTable').append('<tr><td>Indicator Value</td><td>'+scope.keyname+'</td></tr>');
+                            $('#keyTable').append('<tr><td style="text-align: center">Indicator Value</td><td style="text-align: center">'+scope.keyname+'</td></tr>');
 
                             for(var i = lowest;i<highest;i++){
                                 if(q(i)!=tp){
@@ -224,7 +224,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                                     var dv  = $.grep(scope.heatmap, function(e){ return e.id == xxx; });
 
                                     $("#CCGData").show();
-                                    $("#CCGData").html(d.properties.description +"<br> Value:"+(dv[0]["value"]).toFixed(2));
+                                    $("#CCGData").html(d.properties.description +"<br> Indicator Value: "+(dv[0]["value"]).toFixed(2));
                                     tooltip.classed("hidden", true);
                                 })
                                 .on("mouseout", function (d, i) {
