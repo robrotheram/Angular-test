@@ -11,7 +11,8 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 data: '=',
                 callbackFn:'&',
                 heatmap:'=',
-                keyname:'='
+                keyname:'=',
+                range:'='
             },
             /**
              * @name link
@@ -53,8 +54,6 @@ wepredictApp.directive( 'ccgMap', ['$location',
 
                 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
                 var country;
-                var lowest;
-                var highest;
                 var q;
 
                 d3.json("js/ccg.json", function(error, world) {
@@ -79,17 +78,10 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 function draw (scope,topo) {
 
                     if(scope.heatmap.length>2){
-                        lowest = Number.POSITIVE_INFINITY;
-                        highest = Number.NEGATIVE_INFINITY;
-                        var tmp;
-                        for (var i=scope.heatmap.length-1; i>=0; i--) {
-                            tmp = scope.heatmap[i]["value"];
-                            if (tmp < lowest) lowest = tmp;
-                            if (tmp > highest) highest = tmp;
-                        }
-                        console.log(highest, lowest);
 
-                        q = d3.scale.quantize().domain([lowest, highest]).range([d3.rgb(240,249,232), d3.rgb(204,235,197), d3.rgb(168,221,181), d3.rgb(123,204,196), d3.rgb(78,179,211), d3.rgb(43,140,190), d3.rgb(8,88,158)]);
+                        console.log(scope.range.h, scope.range.l);
+
+                        q = d3.scale.quantize().domain([scope.range.l, scope.range.h]).range([d3.rgb(240,249,232), d3.rgb(204,235,197), d3.rgb(168,221,181), d3.rgb(123,204,196), d3.rgb(78,179,211), d3.rgb(43,140,190), d3.rgb(8,88,158)]);
 
                     }
 
@@ -172,24 +164,17 @@ wepredictApp.directive( 'ccgMap', ['$location',
 
 
                         if(scope.heatmap.length>10){
-                            lowest = Number.POSITIVE_INFINITY;
-                            highest = Number.NEGATIVE_INFINITY;
-                            var tmp;
-                            for (var i=scope.heatmap.length-1; i>=0; i--) {
-                                tmp = scope.heatmap[i]["value"];
-                                if (tmp < lowest) lowest = tmp;
-                                if (tmp > highest) highest = tmp;
-                            }
-                            console.log(highest, lowest);
 
-                            q = d3.scale.quantize().domain([lowest, highest]).range([d3.rgb(240,249,232), d3.rgb(204,235,197), d3.rgb(168,221,181), d3.rgb(123,204,196), d3.rgb(78,179,211), d3.rgb(43,140,190), d3.rgb(8,88,158)]);
+                            console.log(scope.range.h, scope.range.l);
+
+                            q = d3.scale.quantize().domain([scope.range.l, scope.range.h]).range([d3.rgb(240,249,232), d3.rgb(204,235,197), d3.rgb(168,221,181), d3.rgb(123,204,196), d3.rgb(78,179,211), d3.rgb(43,140,190), d3.rgb(8,88,158)]);
 
                             var tp = null;
                             $('#keyTable').empty();
                             $('#keyTable').append('<colgroup><col width="30%"/><col width="70%"/></colgroup>');
-                            $('#keyTable').append('<tr><td style="text-align: center">Indicator Value</td><td style="text-align: center">'+scope.keyname+'</td></tr>');
+                            $('#keyTable').append('<tr><td style="text-align: center">% Proportion</td><td style="text-align: center">'+scope.keyname+'</td></tr>');
 
-                            for(var i = lowest;i<highest;i++){
+                            for(var i = scope.range.l;i<scope.range.h;i++){
                                 if(q(i)!=tp){
                                     tp = q(i);
                                     //console.log(i,tp);
@@ -224,7 +209,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                                     var dv  = $.grep(scope.heatmap, function(e){ return e.id == xxx; });
 
                                     $("#CCGData").show();
-                                    $("#CCGData").html(d.properties.description +"<br> Indicator Value: "+(dv[0]["value"]).toFixed(2));
+                                    $("#CCGData").html(d.properties.description +"<br>"+(dv[0]["value"]).toFixed(2)+"% Proportion");
                                     tooltip.classed("hidden", true);
                                 })
                                 .on("mouseout", function (d, i) {

@@ -15,6 +15,39 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         var _2012 = {CHD:[],COPD:[],Asma:[],Obesity:[]};
 
 
+        var _CHD = {l:Number.POSITIVE_INFINITY, h:Number.NEGATIVE_INFINITY};
+        var _COPD  = {l:Number.POSITIVE_INFINITY, h:Number.NEGATIVE_INFINITY};
+        var _Asma = {l:Number.POSITIVE_INFINITY, h:Number.NEGATIVE_INFINITY};
+        var _Obesity = {l:Number.POSITIVE_INFINITY, h:Number.NEGATIVE_INFINITY};
+
+        function compute_CHD(number){
+            if (number < _CHD.l) _CHD.l = number;
+            if (number > _CHD.h) _CHD.h = number;
+        }
+
+        function compute_COPD(number){
+            if (number < _COPD.l) _COPD.l = number;
+            if (number > _COPD.h) _COPD.h = number;
+        }
+
+        function compute_Asma(number){
+            if (number < _Asma.l) _Asma.l = number;
+            if (number > _Asma.h) _Asma.h = number;
+        }
+        function compute_Obesity(number){
+            if (number < _Obesity.l) _Obesity.l = number;
+            if (number > _Obesity.h) _Obesity.h = number;
+        }
+
+        function computeRange(chd,copd,asma,obesity){
+            compute_CHD(chd);
+            compute_COPD(copd);
+            compute_Asma(asma);
+            compute_Obesity(obesity);
+        }
+
+
+
         var selectedYear;
         var selectedData;
         var timeout;
@@ -36,6 +69,9 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
 
+
+
+
         /**
          * @name $scope.alert
          * @function alert
@@ -45,15 +81,21 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
          * @param {String} id ID of CCG
          * @param {String} desc Name of the CCG
          */
+
         $scope.alert = function(id,desc){
+
             $timeout(function() {
                 var obj = {name:id,dec:desc};
                 myService.set(obj);
                 console.log(id+" | "+desc);
-                $location.path('ccg');
+                console.log("fire");
+                $location.path('ccg').search({ccg: desc});
                 $scope = $scope || angular.element(document).scope();
                 $scope.$apply();
             });
+
+
+
         };
 
 
@@ -124,6 +166,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
         $scope.COPDUpdate = function() {
+            $scope.dataRange = _COPD;
             selectedData = "COPD";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "COPD"
@@ -139,6 +182,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
         $scope.AsmaUpdate = function() {
+            $scope.dataRange = _Asma;
             selectedData = "Asma";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "Asthma"
@@ -154,6 +198,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
         $scope.CHDUpdate = function() {
+            $scope.dataRange = _CHD;
             selectedData = "CHD";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "CHD"
@@ -168,6 +213,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
         $scope.ObesityUpdate = function() {
+            $scope.dataRange = _Obesity;
             selectedData = "Obesity";
             $scope.ccgheatmapdata = selectedYear[selectedData];
             $scope.keyname = "Obesity"
@@ -188,13 +234,9 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
         $scope.update = function() {
 
-            $timeout(function() {
-                var obj = {dec: $scope.ccgSelected.CCG_Name};
-                myService.set(obj);
-                $location.path('ccg');
-                $scope = $scope || angular.element(document).scope();
-                $scope.$apply();
-            });
+
+            $location.path('ccg').search({ccg: $scope.ccgSelected.CCG_Name });
+
         };
 
         /**
@@ -229,7 +271,6 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
                     _2010["Asma"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_ASTHMA"]}
                     _2010["Obesity"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2010_Obesity_QOF"]}
 
-
                     _2011["CHD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_CHD_QOF"]}
                     _2011["COPD"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_COPD"]}
                     _2011["Asma"][i] = {"id":data[i]["CCG_Name"],"value":data[i]["2011_ASTHMA"]}
@@ -242,9 +283,19 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
 
 
+                    computeRange(data[i]["2009_CHD_QOF"],data[i]["2009_COPD"],data[i]["2009_ASTHMA"],data[i]["2009_Obesity_QOF"]);
+                    computeRange(data[i]["2010_CHD_QOF"],data[i]["2010_COPD"],data[i]["2010_ASTHMA"],data[i]["2010_Obesity_QOF"]);
+                    computeRange(data[i]["2011_CHD_QOF"],data[i]["2011_COPD"],data[i]["2011_ASTHMA"],data[i]["2011_Obesity_QOF"]);
+                    computeRange(data[i]["2012_CHD_QOF"],data[i]["2012_COPD"],data[i]["2012_ASTHMA"],data[i]["2012_Obesity_QOF"]);
+
+
+
                 }
+                console.log(_CHD,_COPD,_Obesity,_Asma);
+
                 selectedYear = _2009;
                 selectedData = "COPD";
+                $scope.dataRange = _COPD;
                 $scope.ccgheatmapdata = selectedYear[selectedData];
                 $scope.keyname = "COPD"
 
