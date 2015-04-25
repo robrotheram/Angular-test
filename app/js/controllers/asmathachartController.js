@@ -621,7 +621,10 @@ wepredictApp.controller('customChartController', ['myService','dataFactory','$sc
      *
      */
     $scope.hideall = function() {
-        changeData();
+        $($scope.chartConfig.series).each(function(){
+            console.log(this);
+            delete this.visible;
+        });
         $($scope.chartConfig.series).each(function(){
             console.log(this);
             this.visible = false;
