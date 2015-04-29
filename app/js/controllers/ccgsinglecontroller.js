@@ -4,14 +4,15 @@
  */
 
 wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$location','$timeout','$route', function(myService,dataFactory,$scope,$location,$timeout,$route) {
+
     var obj = myService.get();
-    $scope.ccgid = obj.dec;
-    $scope.ccgname = obj.dec;
-    $scope.message = obj.dec;
+
+    $scope.ccgname = $location.search().ccg;
+    $scope.message = $location.search().ccg;
 
     $scope.practiceSelected = {}
 
-    dataFactory.getPracticeList(obj.dec)
+    dataFactory.getPracticeList($location.search().ccg)
         .success(function (data) {
             $scope.practice = data;
             $scope.practiceSelected = $scope.practice[0];
@@ -30,13 +31,8 @@ wepredictApp.controller('ccgController', ['myService','dataFactory','$scope','$l
      *
      */
     $scope.update = function() {
-        $timeout(function() {
-            var obj = {prac: $scope.practiceSelected.Practice_Name, dec: $scope.ccgname ,pracid: $scope.practiceSelected.Practice_Code};
-            myService.set(obj);
-            $location.path('practice');
-            $scope = $scope || angular.element(document).scope();
-            $scope.$apply();
-        });
+        $location.path('practice').search({prac: $scope.practiceSelected.Practice_Name, dec: $scope.ccgname ,pracid: $scope.practiceSelected.Practice_Code});
+
     }
 
     /**
