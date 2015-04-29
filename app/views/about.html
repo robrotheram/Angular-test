@@ -27,10 +27,10 @@
             <table style="width: 100%">
                 <tr>
                     <td>
-                        <img src="http://wepredict.co.uk/images/en/logo.png" width="250px">
+                        <img  width="100%" src="http://wepredict.co.uk/images/en/logo.png" width="250px">
                     </td>
                     <td>
-                        <img src="http://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Swansea_University_logo.svg/800px-Swansea_University_logo.svg.png"
+                        <img  width="100%" src="http://thehistoryofwales.typepad.com/.a/6a0177449d1b30970d01a511e0081d970c-800wi"
                              width="250px">
                     </td>
                 </tr>
@@ -57,23 +57,150 @@
 <!-- /.row -->
 
 <hr>
+    <h1> User Manual</h1>
+ <div class="row">
+     <div class="col-sm-12">
+            Welcome to the user guide for the WePredict Health care Visualization project  This document will describe how to use the site and how to get the site working on your own servers.
 
-<div class="row">
-    <div class="col-sm-4">
-        <img class="img-circle img-responsive img-center" width="300px" src="https://pbs.twimg.com/profile_images/518841549103169537/XywDsEgI_400x400.png" alt="">
-        <h2>Random Title</h2>
-        <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
-    </div>
-    <div class="col-sm-4">
-        <img class="img-circle img-responsive img-center"  width="300px" src="http://www.gravatar.com/avatar/cb58014208df792ff42219fef0e44cc2.jpg?s=256&r=g&d=404" alt="">
-        <h2>Random Title</h2>
-        <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    </div>
-    <div class="col-sm-4">
-        <img class="img-circle img-responsive img-center" width="300px" src="https://lh3.googleusercontent.com/-gBvkh0UWREI/VMJUgKTfxoI/AAAAAAAAHgw/2RWRhkhVVJI/s540-no/10401408_10205633200252843_1590672394018869702_n.jpg" alt="">
-        <h2>Random Title</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    </div>
+            The Project can be accessible view here: <a href="http://wepredict.robrotheram.com/">http://wepredict.robrotheram.com/</a>
+
+            The Site is separated in to 2 separate parts. The back-end section that is a Rest API which serves the data from the database.  The second part is the visualization web application that can live apart from the backed and consumes the API from the back end and generate vitalizations from the data
+
+            Full Documentation for the project is available here: <a href="http://robrotheram.github.io/Documentation/">http://robrotheram.github.io/Documentation/ </a>
+
+
+            The project is designed to be very flexible with the setup this means that there are multiple combinations can exits.  For example the front end and the Back-end of the application can live on different servers. Or alternatively the Backed can be re-coded into a different language and so long as the URL paths remain the same only a minor change to the front end will be needed.
+
+
+                            <a name="toc.5"><h1>1&nbsp;Home Page</h1></a>
+
+                                <img class="img-thumbnail" width="100%"src="img/sc1.png">
+
+
+                                <ol>
+
+                                    <li> Main menu bar
+
+                                    <li> Description of the Heatmap updates with the CCG Name when you hover over the heat map
+
+                                    <li> Heat map updates with new data using the controls (5,6) Double clicking on a area on the map will take you to that CCG
+
+                                    <li> Select box containing all CCG in England Select 1 and you will be taken to that area.
+
+                                    <li> Control box, select the data field you want to display on the map
+
+                                    <li> Slider, change the year data on the heat map.
+
+                                    <li> Legend for the keymap, updates for each data field.
+
+                                </ol>
+
+                                
+
+                                <img class="img-thumbnail" width="100%"src="img/sc2.png">
+
+                                Module panel appears above the main content of the page. It can easily be accessed from the main menu, The panel contains all the information about the main data attributes, the value type and the uni for the data attribute.
+
+                                
+
+                                <a name="toc.6"><h1>2&nbsp;CCG Page</h1></a>
+
+
+                                    The CCG page will be the main page that the user will spend on. It centers on one main visualization that will help users compare the CCG practices to see where a problem may occur. The page also contains other visualization such as overview graphs at the bottom of the page. The page also contains a select option to drill down onto  a single practice.
+
+                                    <img class="img-thumbnail" width="100%"src="img/sc7.png">
+
+                                    <ol>
+
+                                        <li> Menu Menu
+
+                                        <li> Select practice
+
+                                        <li> Name of the practice
+
+                                        <li> Visual outline of the CCG
+
+                                        <li> Main visualization
+
+                                    </ol>
+
+                                    
+                                    <a name="toc.6.1"><h2>2.1&nbsp;Main visualization</h2></a>
+
+                                        The main part of the CCG page is the customizable chart section. In this visualization you can set the chart type and data type from the drop down box below.
+
+                                        Other features of this visualization is that you can click on the hide all button which will hide all the data series from the graph. You can now click on individual series from the legend so that you can compare several practices together.
+
+
+
+                                        <img class="img-thumbnail" width="100%"src="img/sc4.png">
+
+                                        <ol>
+
+                                            <li> Graph view of the visualization
+
+                                            <li> Legend of the visualization, Clicking on each item in the Legend it will show or hide that field in the visualization
+
+                                            <li> button to hide all fields from the visualization
+
+                                            <li> button to Show all fields from the visualization
+
+                                            <li> Select which data attribute to visualize
+
+                                            <li> Select what type of chart of the visualize
+                                        </ol>
+
+
+
+
+                                        
+                                        <a name="toc.6.2"><h2>2.2&nbsp;Other CCG charts</h2></a>
+
+                                            On the CCG page is a number of overview charts these rest at the bottom of the CCG page. They contain information about the average data for all of the CCG the container that holds theses panel can horizontally scroll reviling different data attributes.
+
+                                            <img class="img-thumbnail" width="100%"src="img/sc5.png">
+
+                                            <ol>
+
+                                                <li> Chart panel
+
+                                                <li> Chart Tool Tip
+                                            </ol>
+
+                                            <img class="img-thumbnail" width="100%"src="img/sc6.png">
+
+                                            The other visualization on the CCG page is a small comparison visualization. it leverages a scrolling table to show each practice and the data. It allows for a quick overview glance to spot patterns or notice some anomaly in the data and then use the practice page to look at that practice further.
+
+                                            <ol>
+
+                                                <li> Scrolling table of data
+
+                                                <li> Graph for each series
+                                            </ol>
+
+
+                                            <a name="toc.7"><h1>3&nbsp;Practice Page</h1></a>
+
+                                                The final section of this Web Application is the practice page. Here it allows a user to analyses a single practice. It Shows the CCG average for comparison. This page also allows you to change the practice to a different one in the CCG and also It allows the user to change the visualization type since some data will be easier to understand depending on the visualization type
+
+
+                                                <img class="img-thumbnail" width="100%"src="img/sc3.png">
+
+                                                <ol>
+
+                                                    <li> Practice Title
+
+                                                    <li> Select a different Practice to view data from
+
+                                                    <li> Change all the charts to a different type
+
+                                                    <li> One chart Shows the practice data vs the CCG average.
+
+                                                    <li> Icon of the CCG
+                                                </ol>
+
+
+           </div>
 </div>
 <!-- /.row -->
 

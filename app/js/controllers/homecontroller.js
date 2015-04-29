@@ -21,15 +21,7 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
 
         $scope.ccgheatmapdata = [1];
 
-        /**
-         * @name $scope.onClick
-         * @function onClick
-         * @memberOf WePredict.mainController
-         * @description  Log function to find out what the points are
-         */
-        $scope.onClick = function (points, evt) {
-            console.log(points, evt);
-        };
+
 
 
         $scope.message = 'Everyone come and see how good I look!';

@@ -253,6 +253,7 @@ wepredictApp.controller('ccgObesityChartController', ['myService','dataFactory',
 wepredictApp.controller('ccgFluChartController', ['myService','dataFactory','$scope','$location','$timeout', function(myService,dataFactory,$scope,$location,$timeout) {
     var obj = myService.get();
 
+
     $scope.chartConfig = {
 
         options: {
